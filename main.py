@@ -1,52 +1,5 @@
 # Simple two-player tic-tac-toe game
-
-def main():
-    player = 1
-    print("Welcome to the Two-Player Tic-Tac-Toe Game!")
-    grid = [[' ' for _ in range(3)] for _ in range(3)]  # Initialize a 3x3 grid
-    display_grid(grid)
-
-    while True:
-        if player == 1:
-            print("Player 1's turn")
-            # Logic for Player 1's turn
-            row, col  = get_inputs()
-            if valid_move(grid, row, col):
-                display_grid(draw_grid(row, col, "X", grid))
-                player = 2
-
-            else:
-                print("Invalid move, try again.")
-                continue
-            
-        else:
-            print("Player 2's turn")
-            # Logic for Player 2's turn
-            row, col = get_inputs()
-
-            if valid_move(grid, row, col):
-                display_grid(draw_grid(row, col, "O", grid))
-                player = 1
-
-            else:
-                print("Invalid move, try again.")
-                continue
-
-        # Check if there is a winner
-
-        if check_winner(grid):
-            if player == 1:
-                print("Player 2 wins!")
-            else:
-                print("Player 1 wins!")
-            break
-
-        # Check if the game is a draw
-        if draw_game(grid):
-            print("It's a draw!")
-            break
-
-
+# This code implements a two-player Tic-Tac-Toe game in Python.
 
 def draw_grid(row, col, mark, grid):
     grid[row][col] = mark  # Mark the cell as occupied
@@ -99,6 +52,53 @@ def check_winner(grid):
         return True
     
     return False
+
+def main():
+    player = 1
+    print("Welcome to the Two-Player Tic-Tac-Toe Game!")
+    grid = [[' ' for _ in range(3)] for _ in range(3)]  # Initialize a 3x3 grid
+    display_grid(grid)
+
+    while True:
+        if player == 1:
+            print("Player 1's turn")
+            # Logic for Player 1's turn
+            row, col  = get_inputs()
+            if valid_move(grid, row, col):
+                display_grid(draw_grid(row, col, "X", grid))
+                player = 2
+
+            else:
+                print("Invalid move, try again.")
+                continue
+            
+        else:
+            print("Player 2's turn")
+            # Logic for Player 2's turn
+            row, col = get_inputs()
+
+            if valid_move(grid, row, col):
+                display_grid(draw_grid(row, col, "O", grid))
+                player = 1
+
+            else:
+                print("Invalid move, try again.")
+                continue
+
+        # Check if there is a winner
+
+        if check_winner(grid):
+            if player == 1:
+                print("Player 2 wins!")
+            else:
+                print("Player 1 wins!")
+            break
+
+        # Check if the game is a draw
+        if draw_game(grid):
+            print("It's a draw!")
+            break
+
 
 
 if __name__ == "__main__":
