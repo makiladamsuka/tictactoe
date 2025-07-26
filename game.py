@@ -1,13 +1,17 @@
+import random
+
 class TicTacToe:
-    def __init__(self):
+    def __init__(self, computer=True):
         self.player = 1
         self.grid = [[' ' for _ in range(3)] for _ in range(3)]
+        self.computer = computer
 
     def display_grid(self):
         for row in self.grid:
             # Print each row of the grid
             print(' | '.join(row))
             print('-' * 10)
+
 
     def get_inputs(self):
         input_value = input("Enter your move (row , column): ")
@@ -27,6 +31,7 @@ class TicTacToe:
         else:
             return False
         
+
     def check_winner(self):
         for row in range(3):
             if self.grid[row][0] == self.grid[row][1] == self.grid[row][2] != ' ':
@@ -43,6 +48,7 @@ class TicTacToe:
                 return True
     
         return False
+
 
     def display_grid(self):
         for row in self.grid:
@@ -64,7 +70,6 @@ class TicTacToe:
         return True
 
 
-
     def play(self):
         while True:
             if self.player == 1:
@@ -80,6 +85,23 @@ class TicTacToe:
                 else:
                     print("Invalid move, try again.")
                     continue
+            elif self.computer and self.player == 2:
+                print("Computer's turn")
+
+                valid_moves = []
+                for row in range(3):
+                    for col in range(3):
+                        if self.valid_move(row, col):
+                            valid_moves.append((row, col))
+
+                print("Valid moves:", valid_moves)
+                row, col = random.choice(valid_moves)
+                self.draw_grid(row, col, 'O')
+                self.display_grid()
+
+                self.player = 1
+
+
 
             else:
                 print("Player 2's turn")
